@@ -22,15 +22,38 @@
        <div class="row topbar" >
            <h4> Netlink Demo App</h4>
        </div>
-       <div id="LayoutContainer" class="col-md-12">
+       <div id="LayoutContainer" class="col-sm-6 col-md-3">
            <div class="col-md-4">
-               
+                      <div ng-controller="AppCtrl" ng-cloak id="LayoutContainer">
+                        <section layout="row" flex>
+                            <md-content flex layout-padding>
+                                 <div class="demo-swipe" md-swipe-left="onSwipeLeft()">
+                                      <md-button ng-click="toggleLeft()"
+                                        class="md-primary" hide-gt-md>
+                                        Toggle left
+                                      </md-button>
+                                 </div>
+                            </md-content>
+                        </section>
+                      </div>
            </div>
            <div class="col-md-4">
                
            </div>
            <div class="col-md-4">
-               
+                      <div ng-controller="AppCtrl" ng-cloak id="LayoutContainer">
+                        <section layout="row" flex>
+                            <md-content flex layout-padding>
+                                 <div class="demo-swipe" md-swipe-left="onSwipeLeft()">
+                                    <md-button ng-click="toggleRight()"
+                                      ng-hide="isOpenRight()"
+                                      class="md-primary">
+                                      Toggle right
+                                    </md-button>
+                                 </div>
+                            </md-content>
+                        </section>
+                      </div>
            </div>
            
        </div>
@@ -53,10 +76,7 @@
           <md-content flex layout-padding>
             <div layout="column" layout-fill layout-align="top center" class="demo-swipe" md-swipe-left="onSwipeLeft()">
               <div>
-                <md-button ng-click="toggleLeft()"
-                  class="md-primary" hide-gt-md>
-                  Toggle left
-                </md-button>
+
               </div>
                 <!--
               <div>
