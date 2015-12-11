@@ -54,6 +54,22 @@ angular
         });
     };
     
+    $scope.line = function () {
+      $mdSidenav('left').close()
+        .then(function () {
+          $log.debug("close line is done");
+          line();
+        });
+    };
+    
+    $scope.map = function () {
+      $mdSidenav('left').close()
+        .then(function () {
+          $log.debug("close map is done");
+          map();
+        });
+    };
+    
     $scope.close = function () {
       $mdSidenav('left').close()
         .then(function () {

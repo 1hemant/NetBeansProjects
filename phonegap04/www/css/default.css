@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 9, 2015, 11:49:35 AM
+    Author     : hrathore
+*/
+/*
+.toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
+  color: white; }
+*/
+HTMLJSCSS
+.swipedemoBasicUsage .demo-swipe {
+  padding: 20px 10px; }
+.swipedemoBasicUsage .no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+#container {
+    height: 500px;
+    min-width: 310px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
