@@ -84,4 +84,6 @@ angular
     };
   });
   
-  
+  window.shouldRotateToOrientation = function(degrees) {
+ return true;
+}
