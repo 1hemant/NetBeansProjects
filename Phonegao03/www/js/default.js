@@ -46,16 +46,14 @@ angular
     }
   })
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-      $log.debug("1");
     $scope.pie = function () {
       $mdSidenav('left').close()
         .then(function () {
-          $log.debug("close LEFT is done and pie is called");
+          $log.debug("close pie is done");
           pie();
         });
     };
-    })  
-  .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    
     $scope.close = function () {
       $mdSidenav('left').close()
         .then(function () {
