@@ -69,6 +69,7 @@ angular
         });
     };**/
     })
+    /**
   .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
       $mdSidenav('right').close()
@@ -76,7 +77,7 @@ angular
           $log.debug("close RIGHT is done");
         });
     };
-  })
+  })**/
   .controller('demoSwipeCtrl', function($scope) {
     $scope.onSwipeLeft = function(ev) {
       alert('You swiped left!!');
