@@ -12,11 +12,28 @@
        <script src="./js/pieChart.js" type="text/javascript"></script>
        <script src="./js/lineChart.js" type="text/javascript"></script>
        <script src="./js/mapChart.js" type="text/javascript"></script>
+       <!--<link href="http://dev-analytics.thecarecloud.com/Xeeva/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+       <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+       <link href="css/default.css" rel="stylesheet" type="text/css"/>
    </head>
    
    
    <body ng-app="MyApp">
-       
+       <div class="row topbar" >
+           <h4> Netlink Demo App</h4>
+       </div>
+       <div id="LayoutContainer" class="col-md-12">
+           <div class="col-md-4">
+               
+           </div>
+           <div class="col-md-4">
+               
+           </div>
+           <div class="col-md-4">
+               
+           </div>
+           
+       </div>
        <div ng-controller="AppCtrl" layout="column" style="height:70x;" ng-cloak id="LayoutContainer" class="col-md-4">
         <section layout="row" flex>
           <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
@@ -31,10 +48,6 @@
               <md-button ng-click="line()" class="md-primary" hide-gt-md>
                 Line Chart
               </md-button>
-                <!--<br/>
-              <md-button ng-click="close()" class="md-primary" hide-gt-md>
-                Close Menu
-              </md-button>-->
             </md-content>
           </md-sidenav>
           <md-content flex layout-padding>
