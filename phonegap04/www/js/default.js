@@ -68,22 +68,42 @@ angular
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });*/
-            
-    $.get(urlLogin).done(function (data) {
-    console.log(data);
+        
+    var cat = [];
+    var data = []
+    $.get(urlLogin).done(function (e) {
+        console.log(e);
+        $mdSidenav('left').close();
+        for(i = 0; i < e.resultset.length; ++i){
+            cat.push(e.resultset[i][3]);
+            data.push(e.resultset[i][0]);
+        }
+        line(cat, data);
     });
-    // Using XMLHttpRequest
-var xhr = new XMLHttpRequest();
-xhr.open("GET", urlLogin, true);
-xhr.onload = function () {
-    console.log(xhr.responseText);
-};
-      $mdSidenav('left').close()
-        .then(function () {
-          $log.debug("close pie is done");
-          //pie(data);
-          pie(xhr.responseText);
-        });
+//    // Using XMLHttpRequest
+//    var xhr = new XMLHttpRequest();
+//    xhr.open("GET", urlLogin, true);
+//    xhr.onload = function () {
+//    //console.log(xhr.responseText);
+//};
+//      
+      
+//        .then(function () {
+//          $log.debug("close pie is done");
+//          //pie(data);
+//          pie(xhr.responseText);
+//          //console.log("result1",xhr.responseText);
+//          console.log(xhr.responseText);
+//          var d,cat,data;
+//          d = xhr.responseText;
+//          for(i = 0; i < d.resultset.length; ++i){
+//	
+//	cat.push(d.resultset[i][3]);
+//	data.push(d.resultset[i][0]);
+//        console.log(cat);
+//	
+//};
+//        });
     };
     
     $scope.line = function () {
@@ -155,7 +175,7 @@ function getTitle(text) {
 // Make the actual CORS request.
 function makeCorsRequest() {
   // All HTML5 Rocks properties support CORS.
-  var url = 'http://localhost:3001/get_data';
+  var url = urlLogin;
 
   var xhr = createCORSRequest('GET', url);
   if (!xhr) {

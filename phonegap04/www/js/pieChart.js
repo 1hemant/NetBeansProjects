@@ -5,7 +5,8 @@
  */
 
 
-function pie(data) {
+function pie(cat, data) {
+    console.log(data);
     $('#container').highcharts({
         
         chart: {
