@@ -71,13 +71,14 @@ angular
             }).
             error(function(data, status, headers, config) {
                 alert(data);
+                //Note: Here we have to route it to some dummy data.
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
       $mdSidenav('left').close()
         .then(function () {
           $log.debug("close pie is done");
-          pie();
+          pie(data);
         });
     };
     
