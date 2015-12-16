@@ -12,14 +12,7 @@ angular
      * Supplies a function that will continue to operate until the
      * time is up.
      */
-    /*
-    app.config([
-    "$routeProvider",
-    "$httpProvider",
-    function($routeProvider, $httpProvider){
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
-    }
-])*/
+
 
     function debounce(func, wait, context) {
       var timer;
@@ -58,12 +51,12 @@ angular
   })
   .controller('LeftCtrl', function ($scope, $http, $timeout, $mdSidenav, $log) {
     
-    $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"}; //you probably don't need this line.  This lets me connect to my server on a different domain
+    //$http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"}; //you probably don't need this line.  This lets me connect to my server on a different domain
     $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa('iostest@netlink.com' + ':' + 'test1234');
     
       $scope.pie = function () {
-          //var urlLogin=encode_utf8("https://uat-analytics.thecarecloud.com/netlink/plugin/cda/api/doQuery?path=/public/UAT/Landing Page/Telecom Business Brain/Categories/Network Management/Network Insights.cda&dataAccessId=DonutChart&parampWeekEnd= '26-Apr-2015' &parampDate='All'&parampFlag='All'&parampDistrict='All'&parampCity='All'&parampHour='All'&parampBTS='All'&parampDonut='All'");
-          $http({method: 'GET', url: 'http://localhost:3001/get_data' }).
+          var urlLogin=encode_utf8("https://uat-analytics.thecarecloud.com/netlink/plugin/cda/api/doQuery?path=/public/UAT/Landing Page/Telecom Business Brain/Categories/Network Management/Network Insights.cda&dataAccessId=DonutChart&parampWeekEnd= '26-Apr-2015' &parampDate='All'&parampFlag='All'&parampDistrict='All'&parampCity='All'&parampHour='All'&parampBTS='All'&parampDonut='All'");
+        /*  $http({method: 'GET', url: 'http://localhost:3001/get_data' }).
             success(function(data, status, headers, config) {
                 $scope.pets = data;
                 // this callback will be called asynchronously
@@ -74,11 +67,22 @@ angular
                 //Note: Here we have to route it to some dummy data.
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
-            });
+            });*/
+            
+    $.get(urlLogin).done(function (data) {
+    console.log(data);
+    });
+    // Using XMLHttpRequest
+var xhr = new XMLHttpRequest();
+xhr.open("GET", urlLogin, true);
+xhr.onload = function () {
+    console.log(xhr.responseText);
+};
       $mdSidenav('left').close()
         .then(function () {
           $log.debug("close pie is done");
-          pie(data);
+          //pie(data);
+          pie(xhr.responseText);
         });
     };
     
@@ -120,4 +124,55 @@ function encode_utf8(s) {
 
  return unescape(encodeURIComponent(s)); 
 
-} 
+};
+
+
+
+
+
+// Create the XHR object.
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
+// Helper method to parse the title tag from the response.
+function getTitle(text) {
+  return text.match('<title>(.*)?</title>')[1];
+}
+
+// Make the actual CORS request.
+function makeCorsRequest() {
+  // All HTML5 Rocks properties support CORS.
+  var url = 'http://localhost:3001/get_data';
+
+  var xhr = createCORSRequest('GET', url);
+  if (!xhr) {
+    alert('CORS not supported');
+    return;
+  }
+
+  // Response handlers.
+  xhr.onload = function() {
+    var text = xhr.responseText;
+    var title = getTitle(text);
+    alert('Response from CORS request to ' + url + ': ' + title);
+  };
+
+  xhr.onerror = function() {
+    alert('Woops, there was an error making the request.');
+  };
+
+  xhr.send();
+}
