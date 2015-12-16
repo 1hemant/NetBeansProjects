@@ -5,8 +5,9 @@
  */
 
 
-function pie() {
+function pie(data) {
     $('#container').highcharts({
+        
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,

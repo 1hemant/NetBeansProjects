@@ -2,6 +2,8 @@
 <html>
    
    <head>
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+       <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-route.js"></script>-->
        <link href="./bower_components/angular-material/angular-material.css" rel="stylesheet" type="text/css"/>
        <script src="./bower_components/angular/angular.js"></script>
        <script src="./bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
@@ -11,36 +13,42 @@
        <script src="./js/highcharts.js" type="text/javascript"></script>
        <script src="./js/pieChart.js" type="text/javascript"></script>
        <script src="./js/lineChart.js" type="text/javascript"></script>
-       <script src="./js/mapChart.js" type="text/javascript"></script>
-       <!--<link href="http://dev-analytics.thecarecloud.com/Xeeva/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+       
        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
        <link href="css/default.css" rel="stylesheet" type="text/css"/>
    </head>
    
    
    <body ng-app="MyApp">
-       <div class="row topbar" >
-           <h4> Netlink Demo App</h4>
-       </div>
-       <div id="LayoutContainer" class="col-sm-6 col-md-3">
-           <div class="col-md-4">
-                      <div ng-controller="AppCtrl" ng-cloak id="LayoutContainer">
-                        <section layout="row" flex>
-                            <md-content flex layout-padding>
-                                 <div class="demo-swipe" md-swipe-left="onSwipeLeft()">
-                                      <md-button ng-click="toggleLeft()"
-                                        class="md-primary" hide-gt-md>
-                                        Toggle left
-                                      </md-button>
-                                 </div>
-                            </md-content>
-                        </section>
-                      </div>
+       <div class="container-fluid" >
+           <div class="row-fluid">
+                <div class="span12">
+                    <h4> <br/> Netlink Demo App</h4>
+                </div>            
            </div>
-           <div class="col-md-4">
+       </div>
+       <div id="LayoutContainer" class="container-fluid">
+           <div class="row-fluid">
+                <div class="span6">
+                           <div ng-controller="AppCtrl" ng-cloak id="LayoutContainer">
+                             <section layout="row" flex>
+                                 <md-content flex layout-padding>
+                                      <div class="demo-swipe" md-swipe-left="onSwipeLeft()">
+                                           <md-button ng-click="toggleLeft()"
+                                             class="md-primary" hide-gt-md>
+                                             Toggle left
+                                             
+                                           </md-button>
+                                      </div>
+                                 </md-content>
+                             </section>
+                           </div>
+                </div>               
+           </div>
+           <div class="span1">
                
            </div>
-           <div class="col-md-4">
+           <div class="span5" style="float:right; margin-top: -63px;">
                       <div ng-controller="AppCtrl" ng-cloak id="LayoutContainer">
                         <section layout="row" flex>
                             <md-content flex layout-padding>

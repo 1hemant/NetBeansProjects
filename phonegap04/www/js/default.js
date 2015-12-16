@@ -1,5 +1,7 @@
 angular
-  .module('MyApp', ['ngMaterial'])
+    .module('MyApp', [
+      'ngMaterial'
+  ])
   .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -10,6 +12,15 @@ angular
      * Supplies a function that will continue to operate until the
      * time is up.
      */
+    /*
+    app.config([
+    "$routeProvider",
+    "$httpProvider",
+    function($routeProvider, $httpProvider){
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+    }
+])*/
+
     function debounce(func, wait, context) {
       var timer;
       return function debounced() {
@@ -45,8 +56,24 @@ angular
       };
     }
   })
-  .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.pie = function () {
+  .controller('LeftCtrl', function ($scope, $http, $timeout, $mdSidenav, $log) {
+    
+    $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"}; //you probably don't need this line.  This lets me connect to my server on a different domain
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa('iostest@netlink.com' + ':' + 'test1234');
+    
+      $scope.pie = function () {
+          //var urlLogin=encode_utf8("https://uat-analytics.thecarecloud.com/netlink/plugin/cda/api/doQuery?path=/public/UAT/Landing Page/Telecom Business Brain/Categories/Network Management/Network Insights.cda&dataAccessId=DonutChart&parampWeekEnd= '26-Apr-2015' &parampDate='All'&parampFlag='All'&parampDistrict='All'&parampCity='All'&parampHour='All'&parampBTS='All'&parampDonut='All'");
+          $http({method: 'GET', url: 'http://localhost:3001/get_data' }).
+            success(function(data, status, headers, config) {
+                $scope.pets = data;
+                // this callback will be called asynchronously
+                // when the response is available
+            }).
+            error(function(data, status, headers, config) {
+                alert(data);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
       $mdSidenav('left').close()
         .then(function () {
           $log.debug("close pie is done");
@@ -86,4 +113,10 @@ angular
   
   window.shouldRotateToOrientation = function(degrees) {
  return true;
-}
+};
+
+function encode_utf8(s) { 
+
+ return unescape(encodeURIComponent(s)); 
+
+} 
